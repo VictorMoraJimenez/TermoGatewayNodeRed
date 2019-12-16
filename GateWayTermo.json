@@ -12,33 +12,17 @@
         "z": "cabc8ed1.36443",
         "name": "Termo001",
         "topic": "homie/termo001/#",
-        "qos": "1",
+        "qos": "0",
         "datatype": "auto",
         "broker": "7178966f.9a3d58",
         "x": 80,
         "y": 540,
         "wires": [
             [
-                "f416675b.8e1cb8",
-                "e9575819.65dc98",
-                "f4d675a5.069bd8"
+                "f4d675a5.069bd8",
+                "f3ec1c0f.2cab6"
             ]
         ]
-    },
-    {
-        "id": "f416675b.8e1cb8",
-        "type": "debug",
-        "z": "cabc8ed1.36443",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 270,
-        "y": 480,
-        "wires": []
     },
     {
         "id": "d2bdb8b4.3e2a78",
@@ -65,8 +49,7 @@
         "y": 540,
         "wires": [
             [
-                "d2bdb8b4.3e2a78",
-                "bbcc3fb.9245fc"
+                "d2bdb8b4.3e2a78"
             ]
         ]
     },
@@ -79,8 +62,8 @@
         "qos": "1",
         "retain": "true",
         "broker": "7178966f.9a3d58",
-        "x": 610,
-        "y": 1820,
+        "x": 810,
+        "y": 2320,
         "wires": []
     },
     {
@@ -92,8 +75,8 @@
         "qos": "1",
         "retain": "true",
         "broker": "7178966f.9a3d58",
-        "x": 610,
-        "y": 1900,
+        "x": 810,
+        "y": 2400,
         "wires": []
     },
     {
@@ -105,8 +88,8 @@
         "qos": "1",
         "retain": "true",
         "broker": "7178966f.9a3d58",
-        "x": 620,
-        "y": 1960,
+        "x": 820,
+        "y": 2460,
         "wires": []
     },
     {
@@ -126,8 +109,8 @@
         "min": 0,
         "max": "80",
         "step": 1,
-        "x": 360,
-        "y": 1820,
+        "x": 560,
+        "y": 2320,
         "wires": [
             [
                 "ed2cdb96.a0de38"
@@ -156,8 +139,8 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 1150,
-        "y": 1820,
+        "x": 1350,
+        "y": 2320,
         "wires": []
     },
     {
@@ -174,11 +157,11 @@
         "passthru": true,
         "outs": "end",
         "topic": "",
-        "min": "3",
+        "min": "1",
         "max": "20",
         "step": 1,
-        "x": 360,
-        "y": 1900,
+        "x": 560,
+        "y": 2400,
         "wires": [
             [
                 "50cb83a.e728d7c"
@@ -208,7 +191,7 @@
         "seg1": "",
         "seg2": "",
         "x": 880,
-        "y": 720,
+        "y": 780,
         "wires": []
     },
     {
@@ -235,7 +218,7 @@
         "type": "debug",
         "z": "cabc8ed1.36443",
         "name": "",
-        "active": true,
+        "active": false,
         "tosidebar": true,
         "console": false,
         "tostatus": false,
@@ -251,17 +234,17 @@
         "z": "cabc8ed1.36443",
         "name": "Start-SD",
         "topic": "",
-        "payload": "start",
+        "payload": "",
         "payloadType": "str",
         "repeat": "",
         "crontab": "",
         "once": false,
         "onceDelay": 0.1,
         "x": 120,
-        "y": 2140,
+        "y": 1640,
         "wires": [
             [
-                "a1315c3d.f30e4"
+                "1bfa1577.e5adbb"
             ]
         ]
     },
@@ -274,23 +257,8 @@
         "qos": "1",
         "retain": "true",
         "broker": "7178966f.9a3d58",
-        "x": 320,
-        "y": 2140,
-        "wires": []
-    },
-    {
-        "id": "bbcc3fb.9245fc",
-        "type": "debug",
-        "z": "cabc8ed1.36443",
-        "name": "",
-        "active": false,
-        "tosidebar": true,
-        "console": false,
-        "tostatus": false,
-        "complete": "true",
-        "targetType": "full",
-        "x": 570,
-        "y": 480,
+        "x": 660,
+        "y": 1700,
         "wires": []
     },
     {
@@ -304,7 +272,7 @@
         "precision": "",
         "retentionPolicy": "",
         "x": 670,
-        "y": 1380,
+        "y": 1940,
         "wires": [
             []
         ]
@@ -318,7 +286,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 410,
-        "y": 1380,
+        "y": 1940,
         "wires": [
             [
                 "c527f4b1.e26fc8"
@@ -346,7 +314,7 @@
         "type": "function",
         "z": "cabc8ed1.36443",
         "name": "Status",
-        "func": "\nif (msg.payload!=\"ready\"){\n    msg.payload=msg.payload+\" - Displaying last known\"\n}\nreturn msg;",
+        "func": "node.status({'text':msg.payload});\nflow.set(\"status\",msg.payload);\nif (msg.payload!=\"ready\"){\n    msg.payload=msg.payload+\" - Displaying last known\"\n}\nreturn msg;",
         "outputs": 1,
         "noerr": 0,
         "x": 350,
@@ -388,7 +356,7 @@
         "order": 1,
         "width": 0,
         "height": 0,
-        "passthru": false,
+        "passthru": true,
         "options": [
             {
                 "label": "Automático",
@@ -408,8 +376,8 @@
         ],
         "payload": "",
         "topic": "Modo",
-        "x": 350,
-        "y": 1960,
+        "x": 550,
+        "y": 2460,
         "wires": [
             [
                 "d06c7070.c8632"
@@ -426,9 +394,10 @@
         "datatype": "auto",
         "broker": "9949ddaf.7556b",
         "x": 130,
-        "y": 1820,
+        "y": 2320,
         "wires": [
             [
+                "3738c964.0911d6",
                 "92bee290.29c1a"
             ]
         ]
@@ -443,10 +412,11 @@
         "datatype": "auto",
         "broker": "9949ddaf.7556b",
         "x": 130,
-        "y": 1900,
+        "y": 2400,
         "wires": [
             [
-                "eff918a4.c40738"
+                "eff918a4.c40738",
+                "14fbeeb1.e46581"
             ]
         ]
     },
@@ -455,14 +425,17 @@
         "type": "mqtt in",
         "z": "cabc8ed1.36443",
         "name": "Ec2_Sub_Resis_Modo",
-        "topic": "homie/termo001/resistencia/modo/set",
+        "topic": "homie/termo001/resistencia/modoec2/set",
         "qos": "0",
-        "datatype": "auto",
+        "datatype": "utf8",
         "broker": "9949ddaf.7556b",
         "x": 140,
-        "y": 2060,
+        "y": 2500,
         "wires": [
-            []
+            [
+                "3f39b86b.81d678",
+                "d79e20f0.cf828"
+            ]
         ]
     },
     {
@@ -471,11 +444,11 @@
         "z": "cabc8ed1.36443",
         "name": "EC2_Pub_Termo001",
         "topic": "",
-        "qos": "2",
+        "qos": "1",
         "retain": "true",
         "broker": "9949ddaf.7556b",
-        "x": 320,
-        "y": 600,
+        "x": 620,
+        "y": 620,
         "wires": []
     },
     {
@@ -485,7 +458,7 @@
         "name": "Ec2_Pub_State",
         "topic": "homie/termo001/$state",
         "qos": "1",
-        "retain": "true",
+        "retain": "false",
         "broker": "9949ddaf.7556b",
         "x": 380,
         "y": 220,
@@ -504,7 +477,7 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 140,
-        "y": 1380,
+        "y": 1940,
         "wires": [
             [
                 "2db3ff2b.ef62e"
@@ -520,8 +493,8 @@
         "qos": "1",
         "datatype": "auto",
         "broker": "7178966f.9a3d58",
-        "x": 850,
-        "y": 1820,
+        "x": 1050,
+        "y": 2320,
         "wires": [
             [
                 "2f1da4dc.6f112c"
@@ -537,8 +510,8 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "7178966f.9a3d58",
-        "x": 850,
-        "y": 1900,
+        "x": 1050,
+        "y": 2400,
         "wires": [
             [
                 "a0d9eacd.53f1d8"
@@ -554,8 +527,8 @@
         "qos": "0",
         "datatype": "auto",
         "broker": "7178966f.9a3d58",
-        "x": 840,
-        "y": 1960,
+        "x": 1040,
+        "y": 2460,
         "wires": [
             [
                 "7cea7206.6c1adc"
@@ -568,11 +541,11 @@
         "z": "cabc8ed1.36443",
         "name": "Termo001/temperatura",
         "topic": "homie/termo001/termostato/temperatura",
-        "qos": "1",
+        "qos": "0",
         "datatype": "auto",
         "broker": "7178966f.9a3d58",
         "x": 120,
-        "y": 720,
+        "y": 780,
         "wires": [
             [
                 "3266a95a.a0cec6",
@@ -592,7 +565,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 350,
-        "y": 660,
+        "y": 720,
         "wires": []
     },
     {
@@ -600,12 +573,12 @@
         "type": "influxdb out",
         "z": "cabc8ed1.36443",
         "influxdb": "303eb12d.08bf0e",
-        "name": "Termo",
+        "name": "Termo/Temperatura",
         "measurement": "",
         "precision": "",
         "retentionPolicy": "",
-        "x": 810,
-        "y": 780,
+        "x": 650,
+        "y": 840,
         "wires": []
     },
     {
@@ -617,12 +590,12 @@
         "outputs": 1,
         "noerr": 0,
         "x": 390,
-        "y": 720,
+        "y": 780,
         "wires": [
             [
                 "7b26b760.3061f8",
                 "a9dfc70f.6da3f8",
-                "f45a3b7a.6fa1a8"
+                "8eca5b31.cd1928"
             ]
         ]
     },
@@ -635,7 +608,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 630,
-        "y": 720,
+        "y": 780,
         "wires": [
             [
                 "f131a14a.dc55e"
@@ -651,7 +624,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 830,
-        "y": 660,
+        "y": 720,
         "wires": [
             [
                 "41d5f417.c4381c",
@@ -671,7 +644,7 @@
         "complete": "true",
         "targetType": "full",
         "x": 1010,
-        "y": 600,
+        "y": 660,
         "wires": []
     },
     {
@@ -683,33 +656,10 @@
         "outputs": 1,
         "noerr": 0,
         "x": 640,
-        "y": 660,
+        "y": 720,
         "wires": [
             [
                 "6f81e5c8.1d03bc"
-            ]
-        ]
-    },
-    {
-        "id": "f45a3b7a.6fa1a8",
-        "type": "delay",
-        "z": "cabc8ed1.36443",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 620,
-        "y": 780,
-        "wires": [
-            [
-                "8eca5b31.cd1928"
             ]
         ]
     },
@@ -743,7 +693,7 @@
         "z": "cabc8ed1.36443",
         "name": "Termo001/resistencia",
         "topic": "homie/termo001/resistencia/encendida",
-        "qos": "1",
+        "qos": "0",
         "datatype": "auto",
         "broker": "7178966f.9a3d58",
         "x": 120,
@@ -775,11 +725,11 @@
         "type": "influxdb out",
         "z": "cabc8ed1.36443",
         "influxdb": "303eb12d.08bf0e",
-        "name": "Termo",
+        "name": "Termo/resistencia",
         "measurement": "",
         "precision": "",
         "retentionPolicy": "",
-        "x": 830,
+        "x": 650,
         "y": 1220,
         "wires": []
     },
@@ -796,7 +746,7 @@
         "wires": [
             [
                 "6c0822dd.00045c",
-                "6e7f8a81.6761e4"
+                "d3254712.4ea4a8"
             ]
         ]
     },
@@ -804,38 +754,15 @@
         "id": "6c0822dd.00045c",
         "type": "function",
         "z": "cabc8ed1.36443",
-        "name": "Resistencia",
+        "name": "ParseResistencia",
         "func": "\nif(msg.payload.node==='resistencia' && msg.payload.property==='encendida'){\n    node.status({'text':msg.payload.value});\n    msg.payload = msg.payload.value;\n    \n}\n\nelse{\n    msg='';\n    \n}\n\n\nreturn msg;    \n\n",
         "outputs": 1,
         "noerr": 0,
-        "x": 630,
+        "x": 650,
         "y": 1160,
         "wires": [
             [
                 "84637596.d03788"
-            ]
-        ]
-    },
-    {
-        "id": "6e7f8a81.6761e4",
-        "type": "delay",
-        "z": "cabc8ed1.36443",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 620,
-        "y": 1220,
-        "wires": [
-            [
-                "d3254712.4ea4a8"
             ]
         ]
     },
@@ -845,7 +772,7 @@
         "z": "cabc8ed1.36443",
         "name": "Termo001/caudal",
         "topic": "homie/termo001/caudalimetro/caudal",
-        "qos": "1",
+        "qos": "0",
         "datatype": "auto",
         "broker": "7178966f.9a3d58",
         "x": 100,
@@ -877,11 +804,11 @@
         "type": "influxdb out",
         "z": "cabc8ed1.36443",
         "influxdb": "303eb12d.08bf0e",
-        "name": "Termo",
+        "name": "Termo/caudal",
         "measurement": "",
         "precision": "",
         "retentionPolicy": "",
-        "x": 830,
+        "x": 640,
         "y": 1000,
         "wires": []
     },
@@ -898,7 +825,7 @@
         "wires": [
             [
                 "ea3a215a.3e054",
-                "1589e72b.6d5109"
+                "835ba7a4.977048"
             ]
         ]
     },
@@ -915,29 +842,6 @@
         "wires": [
             [
                 "51047aaa.4d32e4"
-            ]
-        ]
-    },
-    {
-        "id": "1589e72b.6d5109",
-        "type": "delay",
-        "z": "cabc8ed1.36443",
-        "name": "",
-        "pauseType": "delay",
-        "timeout": "1",
-        "timeoutUnits": "seconds",
-        "rate": "1",
-        "nbRateUnits": "1",
-        "rateUnits": "second",
-        "randomFirst": "1",
-        "randomLast": "5",
-        "randomUnits": "seconds",
-        "drop": false,
-        "x": 620,
-        "y": 1000,
-        "wires": [
-            [
-                "835ba7a4.977048"
             ]
         ]
     },
@@ -980,7 +884,7 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 140,
-        "y": 1440,
+        "y": 2000,
         "wires": [
             [
                 "2db3ff2b.ef62e"
@@ -1000,7 +904,7 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 140,
-        "y": 1580,
+        "y": 2140,
         "wires": [
             [
                 "2db3ff2b.ef62e"
@@ -1020,7 +924,7 @@
         "once": false,
         "onceDelay": 0.1,
         "x": 150,
-        "y": 1500,
+        "y": 2060,
         "wires": [
             [
                 "2db3ff2b.ef62e"
@@ -1044,7 +948,7 @@
         "name": "reset de tablas de la DB",
         "info": "reset de tablas de la DB",
         "x": 140,
-        "y": 1320,
+        "y": 1880,
         "wires": []
     },
     {
@@ -1054,7 +958,7 @@
         "name": "Control de regulación del termo",
         "info": "Control de regulación del termo\n\nEl modo de regulación no lo debe manipular el usuario",
         "x": 170,
-        "y": 1740,
+        "y": 2260,
         "wires": []
     },
     {
@@ -1070,7 +974,7 @@
         "format": "{{msg.payload | uppercase}}",
         "layout": "row-spread",
         "x": 1080,
-        "y": 660,
+        "y": 720,
         "wires": []
     },
     {
@@ -1111,8 +1015,8 @@
         ],
         "seg1": "",
         "seg2": "",
-        "x": 1150,
-        "y": 1900,
+        "x": 1350,
+        "y": 2400,
         "wires": []
     },
     {
@@ -1127,8 +1031,8 @@
         "label": "Modo funcionamiento:",
         "format": "{{msg.payload | uppercase}}",
         "layout": "row-spread",
-        "x": 1160,
-        "y": 1960,
+        "x": 1360,
+        "y": 2460,
         "wires": []
     },
     {
@@ -1145,8 +1049,8 @@
         "raw": false,
         "topic": "Alerta ",
         "name": "Dialogo Alerta",
-        "x": 620,
-        "y": 120,
+        "x": 600,
+        "y": 160,
         "wires": [
             []
         ]
@@ -1160,7 +1064,7 @@
         "outputs": 1,
         "noerr": 0,
         "x": 350,
-        "y": 120,
+        "y": 160,
         "wires": [
             [
                 "b2e44e2.a25fbb"
@@ -1178,19 +1082,6 @@
         "wires": []
     },
     {
-        "id": "c01f87c0.4373d8",
-        "type": "mqtt out",
-        "z": "cabc8ed1.36443",
-        "name": "Pub_Consigna_Set",
-        "topic": "homie/termo001/sd/download",
-        "qos": "1",
-        "retain": "true",
-        "broker": "7178966f.9a3d58",
-        "x": 830,
-        "y": 380,
-        "wires": []
-    },
-    {
         "id": "46fe6fdc.70a34",
         "type": "function",
         "z": "cabc8ed1.36443",
@@ -1201,10 +1092,323 @@
         "x": 290,
         "y": 380,
         "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3f39b86b.81d678",
+        "type": "delay",
+        "z": "cabc8ed1.36443",
+        "name": "",
+        "pauseType": "rate",
+        "timeout": "5",
+        "timeoutUnits": "seconds",
+        "rate": "1",
+        "nbRateUnits": "5",
+        "rateUnits": "second",
+        "randomFirst": "1",
+        "randomLast": "5",
+        "randomUnits": "seconds",
+        "drop": true,
+        "x": 380,
+        "y": 2500,
+        "wires": [
             [
-                "c01f87c0.4373d8"
+                "ed92cece.d90cf"
             ]
         ]
+    },
+    {
+        "id": "d79e20f0.cf828",
+        "type": "debug",
+        "z": "cabc8ed1.36443",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 550,
+        "y": 2640,
+        "wires": []
+    },
+    {
+        "id": "14fbeeb1.e46581",
+        "type": "debug",
+        "z": "cabc8ed1.36443",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 350,
+        "y": 2440,
+        "wires": []
+    },
+    {
+        "id": "3738c964.0911d6",
+        "type": "debug",
+        "z": "cabc8ed1.36443",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "x": 330,
+        "y": 2360,
+        "wires": []
+    },
+    {
+        "id": "39a14270.3a3fde",
+        "type": "influxdb in",
+        "z": "cabc8ed1.36443",
+        "influxdb": "5c711447.bed99c",
+        "name": "",
+        "query": "",
+        "rawOutput": false,
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 730,
+        "y": 260,
+        "wires": [
+            [
+                "867c3733.ae4d18"
+            ]
+        ]
+    },
+    {
+        "id": "867c3733.ae4d18",
+        "type": "debug",
+        "z": "cabc8ed1.36443",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 950,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "f3ec1c0f.2cab6",
+        "type": "queue",
+        "z": "cabc8ed1.36443",
+        "name": "queue",
+        "connected": "connected",
+        "connectedType": "str",
+        "disconnected": "",
+        "disconnectedType": "str",
+        "sqlite": "/home/pi/queue.sqlite",
+        "x": 350,
+        "y": 620,
+        "wires": [
+            [
+                "e9575819.65dc98"
+            ]
+        ]
+    },
+    {
+        "id": "65b4b665.0888a8",
+        "type": "status",
+        "z": "cabc8ed1.36443",
+        "name": "Status MQTT Ec2",
+        "scope": [
+            "e9575819.65dc98"
+        ],
+        "x": 130,
+        "y": 640,
+        "wires": [
+            [
+                "f3ec1c0f.2cab6"
+            ]
+        ]
+    },
+    {
+        "id": "ec7c701f.91aac",
+        "type": "mqtt in",
+        "z": "cabc8ed1.36443",
+        "name": "Termo001/SD",
+        "topic": "homie/termo001/sd/dump",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "7178966f.9a3d58",
+        "x": 110,
+        "y": 1420,
+        "wires": [
+            [
+                "57e67433.eea95c",
+                "9c60cada.1d9078",
+                "56281622.b7b588"
+            ]
+        ]
+    },
+    {
+        "id": "57e67433.eea95c",
+        "type": "debug",
+        "z": "cabc8ed1.36443",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 370,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "a75a3e39.d9755",
+        "type": "influxdb out",
+        "z": "cabc8ed1.36443",
+        "influxdb": "303eb12d.08bf0e",
+        "name": "Termo SD",
+        "measurement": "",
+        "precision": "",
+        "retentionPolicy": "",
+        "x": 760,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "9c60cada.1d9078",
+        "type": "function",
+        "z": "cabc8ed1.36443",
+        "name": "Convert to JSON",
+        "func": "\nvar topicos= msg.topic;\nvar dump = msg.payload.split(\"<\");\n\nvar dumpTopic = dump[0];\nvar dumpValue = dump[1];\n\nvar tokens = dumpTopic.split(\"/\");\n\nvar payload = dumpValue.split(\"@\");\n\nvar value = payload[0];\nvar timestamp = payload[1]*1000000000;\n\nswitch(payload[0])\n{\n\n    case 'false':\n        value='false';\n        break;\n    case 'true':\n        value='true';\n        break;\n    default:\n        value = parseFloat(payload[0]);\n}\n\nif(topicos.includes('$')){\n    msg=\"\";\n}\nelse{\n        switch (tokens[3]){\n            \n            case \"temperatura\":\n                msg.measurement=\"temperatura\";\n                break;\n            case \"caudal\":\n                msg.measurement=\"caudal\";\n                break;\n            case \"resistencia\":\n                msg.measurement=\"resistencia\";\n                break;\n        }\n        \n        msg.payload = {\"time\":timestamp,\"device\":tokens[1],\"node\":tokens[2],\"property\":tokens[3],\"value\":value};\n\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 1420,
+        "wires": [
+            [
+                "3a4219ae.ffac86",
+                "a75a3e39.d9755"
+            ]
+        ]
+    },
+    {
+        "id": "3a4219ae.ffac86",
+        "type": "debug",
+        "z": "cabc8ed1.36443",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 630,
+        "y": 1360,
+        "wires": []
+    },
+    {
+        "id": "2e2b1cfc.4ec574",
+        "type": "mqtt out",
+        "z": "cabc8ed1.36443",
+        "name": "EC2_Pub_Termo001",
+        "topic": "",
+        "qos": "1",
+        "retain": "true",
+        "broker": "9949ddaf.7556b",
+        "x": 740,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "56281622.b7b588",
+        "type": "function",
+        "z": "cabc8ed1.36443",
+        "name": "Convert to MQTT",
+        "func": "var dump = msg.payload.split(\"<\");\n\nvar dumpTopic = dump[0];\nvar dumpValue = dump[1];\n\nmsg.topic = dump[0];\nmsg.payload = dump[1];\n\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 410,
+        "y": 1500,
+        "wires": [
+            [
+                "2e2b1cfc.4ec574",
+                "84c84e6f.a693d"
+            ]
+        ]
+    },
+    {
+        "id": "84c84e6f.a693d",
+        "type": "debug",
+        "z": "cabc8ed1.36443",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 650,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "1bfa1577.e5adbb",
+        "type": "function",
+        "z": "cabc8ed1.36443",
+        "name": "Start-stop SD",
+        "func": "var status = flow.get(\"status\");\nvar sdstatus = msg.payload;\n\nif ( status == 'ready' && msg.payload =='ready'){\n    msg.payload = 'start';\n}else\n    msg.payload = 'stop';\n node.status({'text':msg.payload});\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 380,
+        "y": 1700,
+        "wires": [
+            [
+                "a1315c3d.f30e4",
+                "6ef0d337.b6befc"
+            ]
+        ]
+    },
+    {
+        "id": "6ef0d337.b6befc",
+        "type": "debug",
+        "z": "cabc8ed1.36443",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "targetType": "full",
+        "x": 590,
+        "y": 1760,
+        "wires": []
+    },
+    {
+        "id": "e81a608f.d1c3",
+        "type": "mqtt in",
+        "z": "cabc8ed1.36443",
+        "name": "Termo001/SD",
+        "topic": "homie/termo001/sd/estado",
+        "qos": "1",
+        "datatype": "auto",
+        "broker": "7178966f.9a3d58",
+        "x": 110,
+        "y": 1700,
+        "wires": [
+            [
+                "1bfa1577.e5adbb"
+            ]
+        ]
+    },
+    {
+        "id": "c8468602.9fb438",
+        "type": "comment",
+        "z": "cabc8ed1.36443",
+        "name": "Publicación de los mensages que vienen de la SD",
+        "info": "reset de tablas de la DB",
+        "x": 210,
+        "y": 1320,
+        "wires": []
     },
     {
         "id": "7178966f.9a3d58",
@@ -1214,7 +1418,7 @@
         "broker": "127.0.0.1",
         "port": "8883",
         "tls": "d40401eb.f855a",
-        "clientid": "",
+        "clientid": "RpiNode001",
         "usetls": true,
         "compatmode": false,
         "keepalive": "60",
@@ -1294,19 +1498,22 @@
         "broker": "34.255.208.144",
         "port": "1883",
         "tls": "e53ff251.ba542",
-        "clientid": "",
+        "clientid": "Rpi001",
         "usetls": true,
         "compatmode": true,
         "keepalive": "60",
         "cleansession": true,
         "birthTopic": "homie/Gateway/$state",
         "birthQos": "0",
+        "birthRetain": "true",
         "birthPayload": "ready",
         "closeTopic": "homie/Gateway/$state",
         "closeQos": "0",
+        "closeRetain": "true",
         "closePayload": "disconnect",
         "willTopic": "homie/Gateway/$state",
         "willQos": "0",
+        "willRetain": "true",
         "willPayload": "Error"
     },
     {
